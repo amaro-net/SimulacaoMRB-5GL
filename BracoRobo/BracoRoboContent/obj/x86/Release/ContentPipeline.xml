@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>base_giratoria.x</Source>
+      <Name>base_giratoria</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\base_giratoria.xnb</Output>
+      <Time>2014-12-28T18:28:22.2435269-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\base_giratoria_0.xml</Key>
+        <Value>2019-08-15T15:06:44.9370436-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>garra_MK2.x</Source>
+      <Name>garra_MK2</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\garra_MK2.xnb</Output>
+      <Time>2014-12-28T23:25:56.4147271-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\garra_MK2_0.xml</Key>
+        <Value>2019-08-15T15:06:48.9212715-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>servo3.x</Source>
+      <Name>servo3</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\servo3.xnb</Output>
+      <Time>2014-12-28T04:56:45.6528351-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\servo3_0.xml</Key>
+        <Value>2019-08-15T15:06:49.5973102-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>base_fixa.x</Source>
+      <Name>base_fixa</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\base_fixa.xnb</Output>
+      <Time>2019-07-30T16:07:42.668498-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\base_fixa_0.xml</Key>
+        <Value>2019-08-15T15:06:50.1953444-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>segmento_L2.x</Source>
+      <Name>segmento_L2</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\segmento_L2.xnb</Output>
+      <Time>2014-12-28T04:59:35.801567-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\segmento_L2_0.xml</Key>
+        <Value>2019-08-15T15:06:50.8473817-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>segmento_L3.x</Source>
+      <Name>segmento_L3</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\segmento_L3.xnb</Output>
+      <Time>2014-12-28T05:03:16.0591651-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\segmento_L3_0.xml</Key>
+        <Value>2019-08-15T15:06:51.6104253-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>servo1.x</Source>
+      <Name>servo1</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\servo1.xnb</Output>
+      <Time>2014-12-28T04:53:57.9742444-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\servo1_0.xml</Key>
+        <Value>2019-08-15T15:06:51.8834409-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>servo2.x</Source>
+      <Name>servo2</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\servo2.xnb</Output>
+      <Time>2014-12-28T04:55:51.1647186-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\servo2_0.xml</Key>
+        <Value>2019-08-15T15:06:51.9934472-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>segmento_L1.x</Source>
+      <Name>segmento_L1</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\segmento_L1.xnb</Output>
+      <Time>2014-12-28T18:00:08.5026505-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\segmento_L1_0.xml</Key>
+        <Value>2019-08-15T15:06:52.8614969-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos.x</Source>
+      <Name>eixos_cartesianos</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\eixos_cartesianos.xnb</Output>
+      <Time>2019-08-07T16:18:38.9550445-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\eixos_cartesianos_0.xml</Key>
+        <Value>2019-08-15T15:06:53.1145113-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>plano_braco_robo.x</Source>
+      <Name>plano_braco_robo</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">255, 0, 255, 0</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\plano_braco_robo.xnb</Output>
+      <Time>2019-08-11T23:02:44.2182924-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\plano_braco_robo_0.xml</Key>
+        <Value>2019-08-15T15:06:53.1525135-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>parte_plano_braco.x</Source>
+      <Name>parte_plano_braco</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\parte_plano_braco.xnb</Output>
+      <Time>2019-08-12T23:39:19.7707131-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\parte_plano_braco_0.xml</Key>
+        <Value>2019-08-15T15:06:53.2615197-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>parte_plano_garra.x</Source>
+      <Name>parte_plano_garra</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\parte_plano_garra.xnb</Output>
+      <Time>2019-08-13T20:07:10.1509251-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\parte_plano_garra_0.xml</Key>
+        <Value>2019-08-15T15:06:53.3265234-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>parte_plano_obliquo.x</Source>
+      <Name>parte_plano_obliquo</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\parte_plano_obliquo.xnb</Output>
+      <Time>2019-08-13T20:15:18.6348648-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\parte_plano_obliquo_0.xml</Key>
+        <Value>2019-08-15T15:06:53.3905271-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>base_giratoria.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\base_giratoria_0.xml</Output>
+      <Time>2014-12-28T18:28:22.2435269-02:00</Time>
+    </Item>
+    <Item>
+      <Source>garra_MK2.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\garra_MK2_0.xml</Output>
+      <Time>2014-12-28T23:25:56.4147271-02:00</Time>
+    </Item>
+    <Item>
+      <Source>servo3.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\servo3_0.xml</Output>
+      <Time>2014-12-28T04:56:45.6528351-02:00</Time>
+    </Item>
+    <Item>
+      <Source>base_fixa.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\base_fixa_0.xml</Output>
+      <Time>2019-07-30T16:07:42.668498-03:00</Time>
+    </Item>
+    <Item>
+      <Source>segmento_L2.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\segmento_L2_0.xml</Output>
+      <Time>2014-12-28T04:59:35.801567-02:00</Time>
+    </Item>
+    <Item>
+      <Source>segmento_L3.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\segmento_L3_0.xml</Output>
+      <Time>2014-12-28T05:03:16.0591651-02:00</Time>
+    </Item>
+    <Item>
+      <Source>servo1.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\servo1_0.xml</Output>
+      <Time>2014-12-28T04:53:57.9742444-02:00</Time>
+    </Item>
+    <Item>
+      <Source>servo2.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\servo2_0.xml</Output>
+      <Time>2014-12-28T04:55:51.1647186-02:00</Time>
+    </Item>
+    <Item>
+      <Source>segmento_L1.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\segmento_L1_0.xml</Output>
+      <Time>2014-12-28T18:00:08.5026505-02:00</Time>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\eixos_cartesianos_0.xml</Output>
+      <Time>2019-08-07T16:18:38.9550445-03:00</Time>
+    </Item>
+    <Item>
+      <Source>plano_braco_robo.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\plano_braco_robo_0.xml</Output>
+      <Time>2019-08-11T23:02:44.2182924-03:00</Time>
+    </Item>
+    <Item>
+      <Source>parte_plano_braco.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\parte_plano_braco_0.xml</Output>
+      <Time>2019-08-12T23:39:19.7707131-03:00</Time>
+    </Item>
+    <Item>
+      <Source>parte_plano_garra.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\parte_plano_garra_0.xml</Output>
+      <Time>2019-08-13T20:07:10.1509251-03:00</Time>
+    </Item>
+    <Item>
+      <Source>parte_plano_obliquo.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\parte_plano_obliquo_0.xml</Output>
+      <Time>2019-08-13T20:15:18.6348648-03:00</Time>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos1.x</Source>
+      <Name>eixos_cartesianos1</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\eixos_cartesianos1.xnb</Output>
+      <Time>2019-09-08T03:06:04.2684257-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\eixos_cartesianos1_0.xml</Key>
+        <Value>2019-09-08T03:06:23.1985085-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos2.x</Source>
+      <Name>eixos_cartesianos2</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\eixos_cartesianos2.xnb</Output>
+      <Time>2019-09-08T03:25:42.9088401-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\eixos_cartesianos2_0.xml</Key>
+        <Value>2019-09-08T03:25:51.7143437-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos3.x</Source>
+      <Name>eixos_cartesianos3</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\eixos_cartesianos3.xnb</Output>
+      <Time>2019-09-08T03:41:08.030754-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\eixos_cartesianos3_0.xml</Key>
+        <Value>2019-09-08T03:41:23.6046448-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos4.x</Source>
+      <Name>eixos_cartesianos4</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\eixos_cartesianos4.xnb</Output>
+      <Time>2019-09-08T04:10:38.3310094-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\eixos_cartesianos4_0.xml</Key>
+        <Value>2019-09-08T04:10:53.3138664-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos5.x</Source>
+      <Name>eixos_cartesianos5</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\eixos_cartesianos5.xnb</Output>
+      <Time>2019-09-08T04:21:52.85459-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\eixos_cartesianos5_0.xml</Key>
+        <Value>2019-09-08T04:22:02.0561163-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianosGarra.x</Source>
+      <Name>eixos_cartesianosGarra</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\eixos_cartesianosGarra.xnb</Output>
+      <Time>2019-09-08T04:36:13.9778434-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\eixos_cartesianosGarra_0.xml</Key>
+        <Value>2019-09-08T04:36:25.388496-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos1.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\eixos_cartesianos1_0.xml</Output>
+      <Time>2019-09-08T03:06:04.2684257-03:00</Time>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos2.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\eixos_cartesianos2_0.xml</Output>
+      <Time>2019-09-08T03:25:42.9088401-03:00</Time>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos3.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\eixos_cartesianos3_0.xml</Output>
+      <Time>2019-09-08T03:41:08.030754-03:00</Time>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos4.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\eixos_cartesianos4_0.xml</Output>
+      <Time>2019-09-08T04:10:38.3310094-03:00</Time>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianos5.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\eixos_cartesianos5_0.xml</Output>
+      <Time>2019-09-08T04:21:52.85459-03:00</Time>
+    </Item>
+    <Item>
+      <Source>eixos_cartesianosGarra.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\eixos_cartesianosGarra_0.xml</Output>
+      <Time>2019-09-08T04:36:13.9778434-03:00</Time>
+    </Item>
+    <Item>
+      <Source>conjunto_vetores_projecao.x</Source>
+      <Name>conjunto_vetores_projecao</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\conjunto_vetores_projecao.xnb</Output>
+      <Time>2019-09-09T00:22:10.7193736-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\conjunto_vetores_projecao_0.xml</Key>
+        <Value>2019-09-09T01:17:27.3350732-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>vetorZt.x</Source>
+      <Name>vetorZt</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\vetorZt.xnb</Output>
+      <Time>2019-09-09T00:09:57.1084135-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\vetorZt_0.xml</Key>
+        <Value>2019-09-09T01:17:28.1221182-03:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>conjunto_vetores_projecao.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\conjunto_vetores_projecao_0.xml</Output>
+      <Time>2019-09-09T00:22:10.7193736-03:00</Time>
+    </Item>
+    <Item>
+      <Source>vetorZt.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\vetorZt_0.xml</Output>
+      <Time>2019-09-09T00:09:57.1084135-03:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Release</BuildConfiguration>
+      <CompressContent>true</CompressContent>
+      <RootDirectory>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRoboContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRoboContent\obj\x86\Release\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Amaro\Documents\Visual Studio 2010\Projects\BracoRobo\BracoRobo\BracoRobo\bin\x86\Release\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2019-07-23T07:22:44.1245126-03:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

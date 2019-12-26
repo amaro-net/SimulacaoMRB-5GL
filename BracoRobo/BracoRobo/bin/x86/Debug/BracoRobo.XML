@@ -1,0 +1,2399 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BracoRobo</name>
+    </assembly>
+    <members>
+        <member name="T:BracoRobo.Classes.ComponenteFisico">
+            <summary>
+            Classe para representar todos os componentes físicos do robô.
+            Um objeto ser um ComponenteFisico significa que ele terá todos os
+            atributos de um componente físico, tais como massa (peso), posição (do centro de massa),
+            velocidade escalar (translação), ângulo que girou (em torno de x, y e/ou z) e velocidade angular (giro).
+            Neste caso, objetos que possuem componentes físicos podem (e devem) ser tratados, também, como componentes físicos.
+            Vale notar, também, que todo componente físico terá seu referencial cartesiano próprio. Ou seja, qualquer componente físico
+            que componha um outro componente físico terá sua posição especificada em relação a este referencial.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.modelo">
+            <summary>
+            modelo 3D do componente físico.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.massa">
+            <summary>
+            Massa do componente físico
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.anguloGiro">
+            <summary>
+            Angulo de giro em torno de X, de Y e de Z respectivamente
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.centroMassa">
+            <summary>
+            Posição do centro de massa.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.posReferencial">
+            <summary>
+            Ponto considerado como sendo a posição do componente físico. Posição considerada para transladar o objeto.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.centroGiro">
+            <summary>
+             Posição que será considerada o eixo de giro do componente físico.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.velocidadeTrans">
+            <summary>
+            Velocidade nos eixos X, Y e Z.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.velocidadeAng">
+            <summary>
+            Velocidade angular em torno de X, de Y e de Z.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.aceleracaoTrans">
+            <summary>
+            Aceleração nos eixos X, Y e Z.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComponenteFisico.aceleracaoAng">
+            <summary>
+            Aceleração angular nos eixos X, Y e Z.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.#ctor">
+            <summary>
+            Construtor padrão.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.LoadContent">
+            <summary>
+            Função virtual para carregar todo o conteúdo referente ao componente físico
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.Mover">
+            <summary>
+            Faz o componente físico se mover à velocidadeTrans.
+            Em outras palavras, faz a posição referencial do objeto (posReferencial) mudar de posição à velocidade contida em velocidadeTrans.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MoverInvertido">
+            <summary>
+            Faz o objeto se mover à -velocidadeTrans.
+            Enquanto o método Mover() faz o objeto se mover em um sentido, MoverInvertido() faz o objeto se mover no sentido contrário.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.Girar">
+            <summary>
+            Gira o objeto.
+            Em outras palavras, faz os ângulos do objeto (contidos em anguloGiro) mudarem à velocidade contida em velocidadeAng.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.GirarInvertido">
+            <summary>
+            Gira o objeto em sentido contrário ao método Girar().
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.AceleraTrans">
+            <summary>
+            Aumenta a velocidade de translação à taxa contida em aceleracaoTrans.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.DesaceleraTrans">
+            <summary>
+            Diminui a velocidade de translação à taxa contida em aceleracaoTrans.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.AceleraAng">
+            <summary>
+            Aumenta a velocidade de giro à taxa contida em aceleracaoAng.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.DesaceleraAng">
+            <summary>
+            Diminui a velocidade de giro à taxa contida em aceleracaoAng.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MatrizRotacaoX">
+            <summary>
+            Cria uma matriz de rotação em torno de um eixo paralelo ao eixo X que fica localizado na posição contida em centroGiro.
+            Em outras palavras, o objeto irá girar em torno de uma reta que está na posição centroGiro e se estende
+            paralelamente ao eixo X. Usada para modelos 3D sólidos, ou seja, que só possua um mesh.
+            </summary>
+            <returns>Retorna uma Matriz de rotação em X para o componente físico</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MatrizRotacaoY">
+            <summary>
+            Cria uma matriz de rotação em torno de um eixo paralelo ao eixo Y que fica localizado na posição contida em centroGiro.
+            Em outras palavras, o objeto irá girar em torno de uma reta que está na posição centroGiro e se estende
+            paralelamente ao eixo Y. Usada para modelos 3D sólidos, ou seja, que só possua um mesh.
+            </summary>
+            <returns>Retorna uma Matriz de rotação em Y para o componente físico</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MatrizRotacaoZ">
+            <summary>
+            Cria uma matriz de rotação em torno de um eixo paralelo ao eixo Z que fica localizado na posição contida em centroGiro.
+            Em outras palavras, o objeto irá girar em torno de uma reta que está na posição centroGiro e se estende
+            paralelamente ao eixo Z. Usada para modelos 3D sólidos, ou seja, que só possua um mesh.
+            </summary>
+            <returns>Retorna uma Matriz de rotação em Z para o componente físico</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MatrizRotacaoX_ve">
+            <summary>
+            Cria uma matriz de rotação em torno de um eixo paralelo ao eixo X que fica localizado na posição contida em centroGiro.
+            Em outras palavras, o objeto irá girar em torno de uma reta que está na posição centroGiro e se estende
+            paralelamente ao eixo X. Esta matriz representa uma ida do centro de giro à origem, uma rotação em torno de X 
+            e uma volta ao centro de giro. Usada em modelos 3D que possuam mais de um mesh.
+            </summary>
+            <returns>Retorna uma Matriz de rotação em X para o componente físico, com ida à origem, rotação em torno de X, e volta ao centro de giro</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MatrizRotacaoY_ve">
+            <summary>
+            Cria uma matriz de rotação em torno de um eixo paralelo ao eixo Y que fica localizado na posição contida em centroGiro.
+            Em outras palavras, o objeto irá girar em torno de uma reta que está na posição centroGiro e se estende
+            paralelamente ao eixo Y. Esta matriz representa uma ida do centro de giro à origem, uma rotação em torno de Y 
+            e uma volta ao centro de giro. Usada em modelos 3D que possuam mais de um mesh.
+            </summary>
+            <returns>Retorna uma Matriz de rotação em Y para o componente físico, com ida à origem, rotação em torno de Y, e volta ao centro de giro</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MatrizRotacaoZ_ve">
+            <summary>
+            Cria uma matriz de rotação em torno de um eixo paralelo ao eixo Z que fica localizado na posição contida em centroGiro.
+            Em outras palavras, o objeto irá girar em torno de uma reta que está na posição centroGiro e se estende
+            paralelamente ao eixo Z. Esta matriz representa uma ida do centro de giro à origem, uma rotação em torno de Z 
+            e uma volta ao centro de giro. Usada em modelos 3D que possuam mais de um mesh.
+            </summary>
+            <returns>Retorna uma Matriz de rotação em Z para o componente físico, com ida à origem, rotação em torno de Z, e volta ao centro de giro</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MatrizTranslacao">
+            <summary>
+            Cria uma matriz de translação para o componente físico.
+            </summary>
+            <returns>Retorna uma Matriz de translação para o componente físico</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ComponenteFisico.MomentoInercia">
+            <summary>
+            Método para calcular o momento de inércia de um componente físico.
+            </summary>
+            <returns>valor correspondente ao momento de inércia</returns>
+        </member>
+        <member name="T:BracoRobo.Classes.MotorCC">
+            <summary>
+            Representa um motor de corrente contínua (CC)
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.Motor">
+            <summary>
+            Representa um motor rotacional genérico.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.corpo">
+            <summary>
+            Componente físico correspondente ao corpo do motor. É considerado como sendo a base fixa do motor em relação ao referencial local
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.eixo">
+            <summary>
+            Componente físico correspondente ao eixo giratório do motor (parte móvel do motor)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.centroEixoGiro">
+            <summary>
+            Posição do eixo do motor
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.anguloGiroEixo">
+            <summary>
+            Ângulo que o eixo do motor girou
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.anguloGiroEixoInicial">
+            <summary>
+            Ângulo em graus (em X, Y e/ou Z) que o eixo assume ao iniciar a simulação.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.velocidadeAngularEixo">
+            <summary>
+            Velocidade de giro do eixo do motor
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.velAngularEixoMax">
+            <summary>
+            Velocidade máxima (em módulo) do giro do eixo em torno de X, Y ou Z
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.aceleracaoGiroEixo">
+            <summary>
+            Aceleração de giro do eixo do motor
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.cargaDeAtuacao">
+            <summary>
+            Objeto sobre o qual o motor irá atuar.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.baseDeFixacao">
+            <summary>
+            Objeto no qual o motor está fixado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Motor.eixoCartesianoEixoGiro">
+            <summary>
+            Eixo cartesiano da carga de atuação ao qual o eixo do motor está alinhado
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Motor.#ctor">
+            <summary>
+            Construtor padrão.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Motor.FixarEm(BracoRobo.Classes.ComponenteFisico)">
+            <summary>
+            Método para especificar o componente físico onde o motor será fixado.
+            </summary>
+            <param name="baseFix">Objeto do tipo ComponenteFisico ou de qualquer tipo herdado deste</param>
+        </member>
+        <member name="M:BracoRobo.Classes.Motor.AcoplarAoEixo(BracoRobo.Classes.ComponenteFisico)">
+            <summary>
+            Método para especificar o componente físico que será acoplado ao eixo do motor.
+            </summary>
+            <param name="carga">Objeto do tipo ComponenteFisico ou de qualquer tipo herdado deste</param>
+        </member>
+        <member name="M:BracoRobo.Classes.Motor.AcoplarAoEixo(BracoRobo.Classes.ComponenteFisico,BracoRobo.Classes.EixoCartesiano)">
+            <summary>
+            Método para especificar o componente físico que será acoplado ao eixo do motor. Nesta
+            sobrecarga de método, deve ser especificado a qual eixo do componente físico (X, Y ou Z) o 
+            eixo do motor deve estar alinhado. Lembrar que o eixo do motor é alinhado sempre ao eixo Y
+            positivo local. Se o objeto for plotado sem fazer as rotações após o eixo, o objeto fica
+            alinhado ao eixo Y do eixo do motor.
+            </summary>
+            <param name="carga">Objeto do tipo ComponenteFisico ou de qualquer tipo herdado deste</param>
+            <param name="eixo">Eixo cartesiano da carga ao qual o eixo do motor deve estar alinhado</param>
+        </member>
+        <member name="M:BracoRobo.Classes.Motor.Matrizes(Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Função para gerar as matrizesGarra dos componentes envolvidos no motor.
+            </summary>
+            <param name="mt">Matriz do componente físico ao qual o servo está acoplado</param>
+            <returns>Um vetor de matrizesGarra para os componentes físicos da garra.</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Motor.MomentoInercia">
+            <summary>
+            Retorna o momento de inércia do motor (não implementado)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BracoRobo.Classes.Motor.AnguloGiroEixo">
+            <summary>
+            Ângulo em graus que o eixo do motor girou, em X, Y ou Z. Note que, junto com o eixo, irá girar, também, o objeto (cargaDeAtuacao) que estiver acoplado a ele.
+            Recomenda-se que o eixo do esteja paralelo a apenas 1 eixo (X, Y ou Z).
+            </summary>
+        </member>
+        <member name="P:BracoRobo.Classes.Motor.VelocidadeAngularEixo">
+            <summary>
+            Velocidade de giro do eixo do motor, em X, Y ou Z. Note que a velocidade de giro do eixo será transmitida para o objeto (cargaDeAtuacao) que estiver acoplado ao motor.
+            Recomenda-se que o eixo do motor esteja paralelo a apenas 1 eixo (X, Y ou Z).
+            </summary>
+        </member>
+        <member name="P:BracoRobo.Classes.Motor.AceleracaoGiroEixo">
+            <summary>
+            Aceleração de giro do eixo do motor, em X, Y ou Z. Note que a aceleração de giro do eixo será transmitida para o objeto (cargaDeAtuacao) que estiver acoplado ao motor.
+            Recomenda-se que o eixo do motor esteja paralelo a apenas 1 eixo (X, Y ou Z).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.MotorCC.voltagemMax">
+            <summary>
+            Máxima voltagem aceita pelo motor de corrente contínua (em Volts)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.MotorCC.voltagemMin">
+            <summary>
+            Mínima voltagem aceita pelo motor de corrente contínua (em Volts)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.MotorCC.voltagemNominal">
+            <summary>
+            Voltagem recomenda pelo fabricante do motor CC (em Volts)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.MotorCC.correnteSemCarga">
+            <summary>
+            Corrente que o motor CC consome quando seu eixo roda sem nenhuma carga e na voltagem máxima.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.MotorCC.rpmSemCarga">
+            <summary>
+            Velocidade de rotação em RPM do motor CC quando seu eixo roda sem nenhuma carga e na voltagem máxima. 
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.MotorCC.correnteDeParagem">
+            <summary>
+            Corrente que o motor CC consome quando seu eixo possui carga pesada o suficiente para pará-lo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.MotorCC.torqueDeParagem">
+            <summary>
+            Torque que o motor CC aplica quando seu eixo possui carga pesada o suficiente para pará-lo.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.MotorCC.#ctor">
+            <summary>
+            Construtor padrão
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.EngrenagemComRosca">
+            <summary>
+            Classe para representar uma engrenagem com rosca.
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.Engrenagem">
+            <summary>
+            Classe para representar uma engrenagem.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Engrenagem.raio">
+            <summary>
+            Raio da engrenagem (sem os dentes).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Engrenagem.alturaDentes">
+            <summary>
+            Altura dos dentes da engrenagem, da circunferência à ponta do dente.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Engrenagem.larguraDentes">
+            <summary>
+            Largura dos dentes da engrenagem.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Engrenagem.quantDentes">
+            <summary>
+            Quantidade de dentes da engrenagem.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Engrenagem.#ctor">
+            <summary>
+            Construtor da classe Engrenagem
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Engrenagem.MomentoInercia">
+            <summary>
+            Momento de inércia da engrenagem (não implementado)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:BracoRobo.Classes.EngrenagemComRosca.passoRosca">
+            <summary>
+            Distância, em milímetros, que a rosca se deslocaria se fosse enroscada 1 volta.
+            </summary>
+            <remarks><br></br>
+                  passoRosca <br></br>
+                 |---------| <br></br>
+             ----/---------/---------/---------/---------/- <br></br>
+                /         /         /         /         /   <br></br>
+               /         /         /         /         /    <br></br>
+              /         /         /         /         /     <br></br>
+            -/---------/---------/---------/---------/----- <br></br>
+            </remarks>
+        </member>
+        <member name="F:BracoRobo.Classes.EngrenagemComRosca.raioEixoEspiral">
+            <summary>
+            Raio do eixo da rosca (sem contar a espessura da rosca).
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.EngrenagemComRosca.#ctor">
+            <summary>
+            Construtor padrão
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.SegmentoComEngrenagem">
+            <summary>
+            Classe que representa um segmento com engrenagem
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.SegmentoComEngrenagem.tamanhoSegmento">
+            <summary>
+            Tamanho do segmento entre os furos dos parafusos
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.SegmentoComEngrenagem.numDentes">
+            <summary>
+            Quantidade de dentes que a parte engrenada teria se fosse dada uma volta de 360 graus
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.SegmentoComEngrenagem.raioEngrenagem">
+            <summary>
+            Raio da parte do segmento que possui a engrenagem. Este valor inclui a espessura dos dentes.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.SegmentoComEngrenagem.espessuraDosDentes">
+            <summary>
+            Espessura dos dentes da parte do segmento que possui engrenagem.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.SegmentoComEngrenagem.#ctor">
+            <summary>
+            Construtor da classe segmento com engrenagem. Inicia os campos tamanhoSegmento, 
+            numDentes, raioEngrenagem e espessuraDosDentes com valores padrão.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.SegmentoComEngrenagem.MomentoInercia">
+            <summary>
+            Não implementado
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BracoRobo.Classes.SegmentoArticulacaoGarra">
+            <summary>
+            Classe para representar um segmento giratório de articulação da garra.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.SegmentoArticulacaoGarra.tamanhoSegmento">
+            <summary>
+            Tamanho do segmento entre os furos dos parafusos
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.SegmentoArticulacaoGarra.#ctor">
+            <summary>
+            Construtor da classe SegmentoArticulacaoGarra
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.SegmentoArticulacaoGarra.MomentoInercia">
+            <summary>
+            Não implementado
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BracoRobo.Classes.SegmentoDeBraco">
+            <summary>
+            Representa um segmento do braço robô.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.SegmentoDeBraco.comprimento">
+            <summary>
+            Comprimento do segmento de braço. Para efeito de cálculos de momentos de inércia,
+            o comprimento deve ser a distância entre dois eixos de rotação.
+            Ex.: Um segmento pode medir 30cm, mas os eixos de rotação do segmento podem se encontrar a
+            26cm um do outro. Neste caso, o comprimento deve ser este último valor.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.SegmentoDeBraco.#ctor">
+            <summary>
+            Construtor da classe SegmentoDeBraco.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.SegmentoDeBraco.MomentoInercia">
+            <summary>
+            Momento de inércia do segmento de braço (não implementado)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BracoRobo.Classes.EixoCartesiano">
+            <summary>
+            Enumeração dos eixos cartesianos coordenados
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoCartesiano.Xneg">
+            <summary>
+            Eixo do motor no sentido negativo de X
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoCartesiano.Yneg">
+            <summary>
+            Eixo do motor no sentido negativo de Y
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoCartesiano.Zneg">
+            <summary>
+            Eixo do motor no sentido negativo de Z
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoCartesiano.nenhum">
+            <summary>
+            Eixo do motor sem sentido em nenhum dos eixos cartesianos
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoCartesiano.Xpos">
+            <summary>
+            Eixo do motor no sentido positivo de X
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoCartesiano.Ypos">
+            <summary>
+            Eixo do motor no sentido positivo de Y
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoCartesiano.Zpos">
+            <summary>
+            Eixo do motor no sentido positivo de Z
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.CanalMiniMaestro">
+            <summary>
+            Classe que representa um canal das placas Mini Maestro da Pololu
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.position">
+            <summary>
+            Posição corrente do canal em unidades de 0.25 de microssegundo
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.positionFinalAcel">
+            <summary>
+            Posição em que o canal pára de acelerar
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.positionInicialDesacel">
+            <summary>
+            Posição em que o canal começa a desacelerar
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.positionMedia">
+            <summary>
+            Posição em que o canal muda da aceleração para a desaceleração. Usado quando os instante
+            de fim de aceleração (tempoAcelerando) é maior ou igual ao instante de inicio de 
+            desaceleração (tempoIniDesacel).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.target">
+            <summary>
+            Posição alvo do canal em unidades de 0.25 de microssegundo
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.min">
+            <summary>
+            Menor posição que o canal pode assumir, em unidades de 0.25 de microssegundo
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.max">
+            <summary>
+            Maior posição que o canal pode assumir, em unidades de 0.25 de microssegundo
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.speed">
+            <summary>
+            Velocidade máxima de variação da posição do canal em unidades de (0.25 μs)/(10 ms).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.acceleration">
+            <summary>
+            Aceleraçao da posição do canal em unidades de (0.25 μs)/(10 ms)/(80 ms).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.sinalVel">
+            <summary>
+            Variável para determinar se a velocidade será positiva ou negativa ao alterar a posição do canal
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.sinalAcel">
+            <summary>
+            Variável para determinar se a aceleração será positiva ou negativa ao alterar a velocidade do canal
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.speedCurr">
+            <summary>
+            Velocidade corrente do canal. Pode variar com o tempo. Tem como valor máximo o valor da velocidade armazenado em speed.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.accelerationCurr">
+            <summary>
+            Aceleração corrente do canal. Pode ser nula, negativa ou positiva, dependendo do tempo. Será
+            representada em unidades de (0.25 μs)/(10 ms)/(80 ms).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.servo">
+            <summary>
+            Servo que o canal controla
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.speedCurrNoLimit">
+            <summary>
+            Velocidade corrente do canal, sem o limite de speed. Usada no controle de aceleração.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.CanalMiniMaestro.inverteSinalVelocidade">
+            <summary>
+            Flag para indicar que deverá haver uma inversão de sinal da velocidade do canal. Usado quando
+            o canal possui aceleração maior que zero. Este flag vai para true quando, em movimento, a posição
+            alvo é alterada de forma que o movimento é invertido, ou seja, quando o movimento for positivo e
+            passar a ser negativo, ou quando o movimento for negativo e passar a ser positivo.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.CanalMiniMaestro.#ctor">
+            <summary>
+            Construtor padrão do canal da Mini Maestro
+            </summary>
+        </member>
+        <member name="P:BracoRobo.Classes.CanalMiniMaestro.Position">
+            <summary>
+            Posição corrente do canal em unidades de 0.25 de microssegundo (property)
+            </summary>
+        </member>
+        <member name="P:BracoRobo.Classes.CanalMiniMaestro.Target">
+            <summary>
+            Posição alvo do canal em unidades de 0.25 de microssegundo (property).
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.EixoEngrenagemAmortecida">
+            <summary>
+            Classe para representar um eixo de engrenagem amortecida da garra MK2
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoEngrenagemAmortecida.raioEngrenagem">
+            <summary>
+            Raio da engrenagem (incluindo os dentes)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoEngrenagemAmortecida.numDentes">
+            <summary>
+            Número de dentes da engrenagem
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.EixoEngrenagemAmortecida.espessuraDosDentes">
+            <summary>
+            Espessura dos dentes da engrenagem
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.EixoEngrenagemAmortecida.#ctor">
+            <summary>
+            Construtor de EixoEngrenagemAmortecida
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.EixoEngrenagemAmortecida.MomentoInercia">
+            <summary>
+            Não implementado
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BracoRobo.Classes.ReferencialCartesiano">
+            <summary>
+            Classe que representa um referencial de eixos cartesianos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.modelo">
+            <summary>
+            Modelo 3D do referencial cartesiano
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoEixoX">
+            <summary>
+            Tamanho do eixo X, sem a ponta da seta
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoEixoY">
+            <summary>
+            Tamanho do eixo Y, sem a ponta da seta
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoEixoZ">
+            <summary>
+            Tamanho do eixo Z, sem a ponta da seta
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoLetraX">
+            <summary>
+            Posição da letra X em relação à origem do referencial cartesiano
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoLetraY">
+            <summary>
+            Posição da letra Y em relação à origem do referencial cartesiano
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoLetraZ">
+            <summary>
+            Posição da letra Z em relação à origem do referencial cartesiano
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoPontaSetaEixoX">
+            <summary>
+            Posição da ponta da seta do eixo X
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoPontaSetaEixoY">
+            <summary>
+            Posição da ponta da seta do eixo Y
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoPontaSetaEixoZ">
+            <summary>
+            Posição da ponta da seta do eixo Z
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoPontaSetaEixoXOriginal">
+            <summary>
+            Posição original da ponta da seta do eixo X
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoPontaSetaEixoYOriginal">
+            <summary>
+            Posição original da ponta da seta do eixo Y
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoPontaSetaEixoZOriginal">
+            <summary>
+            Posição original da ponta da seta do eixo Z
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoPontaSetaEixoX">
+            <summary>
+            Tamanho, da base até a ponta, da seta do eixo X
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoPontaSetaEixoY">
+            <summary>
+            Tamanho, da base até a ponta, da seta do eixo Y
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoPontaSetaEixoZ">
+            <summary>
+            Tamanho, da base até a ponta, da seta do eixo Z
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoEixoXOriginal">
+            <summary>
+            Tamanho original do eixo X, sem a ponta da seta
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoEixoYOriginal">
+            <summary>
+            Tamanho original do eixo Y, sem a ponta da seta
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.tamanhoEixoZOriginal">
+            <summary>
+            Tamanho original do eixo Z, sem a ponta da seta
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoLetraXOriginal">
+            <summary>
+            Posição original da letra X
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoLetraYOriginal">
+            <summary>
+            Posição original da letra Y
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.posicaoLetraZOriginal">
+            <summary>
+            Posição original da letra Z
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ReferencialCartesiano.visivel">
+            <summary>
+            Variável para indicar se o referencial cartesiano é visível.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.#ctor">
+            <summary>
+            Construtor padrão da classe ReferencialCartesiano
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizPosLetraX">
+            <summary>
+            Matriz de posicionamento da letra X em relação à sua posição padrão
+            </summary>
+            <returns>Matriz de posicionamento da letra X</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizPosLetraY">
+            <summary>
+            Matriz de posicionamento da letra Y em relação à sua posição padrão
+            </summary>
+            <returns>Matriz de posicionamento da letra Y</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizPosLetraZ">
+            <summary>
+            Matriz de posicionamento da letra Z em relação à sua posição padrão
+            </summary>
+            <returns>Matriz de posicionamento da letra Z</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizTamanhoEixoX">
+            <summary>
+            Matriz de escalonamento (dimensionamento) do eixo X
+            </summary>
+            <returns>Matriz de escalonamento (dimensionamento) do eixo X</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizTamanhoEixoY">
+            <summary>
+            Matriz de escalonamento (dimensionamento) do eixo Y
+            </summary>
+            <returns>Matriz de escalonamento (dimensionamento) do eixo Y</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizTamanhoEixoZ">
+            <summary>
+            Matriz de escalonamento (dimensionamento) do eixo Z
+            </summary>
+            <returns>Matriz de escalonamento (dimensionamento) do eixo Z</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizPosicaoPontaEixoX">
+            <summary>
+            Matriz de posição da ponta do eixo X
+            </summary>
+            <returns>Matriz de posição da ponta do eixo X</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizPosicaoPontaEixoY">
+            <summary>
+            Matriz de posição da ponta do eixo Y
+            </summary>
+            <returns>Matriz de posição da ponta do eixo Y</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.MatrizPosicaoPontaEixoZ">
+            <summary>
+            Matriz de posição da ponta do eixo Z
+            </summary>
+            <returns>Matriz de posição da ponta do eixo Z</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.ExtraiMatrizRotacao(Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Extrai da matrix de transformação a sua componente de rotação, e a retorna em uma nova matriz.
+            </summary>
+            <param name="T">Matriz de transformação</param>
+            <returns>Matriz contendo somente a componente de rotação de T</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.VetoresParaMatrizRotacao(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Cria uma matriz de rotação a partir de 3 vetores quaisquer. Recomenda-se que eles sejam
+            perpendiculares entre si.
+            </summary>
+            <param name="eixoX">Vetor correspondente ao eixo X</param>
+            <param name="eixoY">Vetor correspondente ao eixo Y</param>
+            <param name="eixoZ">Vetor correspondente ao eixo Z</param>
+            <returns>Uma matriz de rotação correspondente aos 3 vetores passados como parâmetro</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.CalculaMatrizRotacaoCamera(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Método para calcular a matriz de rotação correspondente ao vetor obtido a partir da posição da câmera
+            e da posição do referencial cartesiano em relação à origem da base fixa. O vetor da câmera é um vetor que
+            aponta para frente (entrando na tela/janela)
+            </summary>
+            <param name="posicaoCamera">Posição da câmera em relação à origem da base fixa</param>
+            <param name="world">Matriz correspondente à posição e orientação do referencial cartesiano em relação à origem da base fixa</param>
+            <returns>Matriz de rotação referente ao vetor da câmera</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.CalculaMatrizRotacaoLetra(Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Calcula a matriz de rotação que irá orientar a letra do eixo cartesiano.
+            </summary>
+            <param name="world">Matriz correspondente à posição e orientação do referencial cartesiano em relação à origem da base fixa</param>
+            <param name="rotVetorCam">Matriz de rotação referente ao vetor da câmera</param>
+            <param name="posLetra">Vetor de posição da letra em relação à origem do referencial cartesiano</param>
+            <returns>Matriz que irá rotacionar a letra em torno dos eixos X, Y e Z.</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.ReferencialCartesiano.Matrizes(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Lista de todas as matrizes do modelo 3D do referencial cartesiano
+            </summary>
+            <returns>Lista de todas as matrizes do modelo 3D do referencial cartesiano</returns>
+        </member>
+        <member name="P:BracoRobo.Classes.ReferencialCartesiano.TamanhoEixoX">
+            <summary>
+            Tamanho do eixo Y, sem a ponta da seta (property)
+            </summary>
+        </member>
+        <member name="P:BracoRobo.Classes.ReferencialCartesiano.TamanhoEixoY">
+            <summary>
+            Tamanho do eixo Y, sem a ponta da seta (property)
+            </summary>
+        </member>
+        <member name="P:BracoRobo.Classes.ReferencialCartesiano.TamanhoEixoZ">
+            <summary>
+            Tamanho do eixo Z, sem a ponta da seta (property)
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.Camera">
+            <summary>
+            Classe para guardar dados de uma câmera
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.distanciaCamera">
+            <summary>
+            Distância absoluta da câmera para o ponto focal (entre posicaoCamera e posicaoApontada)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.distanciaCameraInicial">
+            <summary>
+            Distância absoluta inicial da câmera para o ponto focal (entre posicaoCamera e posicaoApontada)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.posicaoCamera">
+            <summary>
+            Posição da câmera. As coordenadas são em relação ao referencial definido pela matriz world.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.posicaoApontada">
+            <summary>
+            Posição para onde a câmera está olhando
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.posicaoApontadaInicial">
+            <summary>
+            Posição para onde a câmera estava olhando
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.azimuteCamera">
+            <summary>
+            Ângulo em graus do giro horizontal da câmera
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.azimuteCameraInicial">
+            <summary>
+            Ângulo inicial em graus do giro horizontal da câmera
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.elevacaoCamera">
+            <summary>
+            Ângulo em graus do giro vertical da câmera
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Camera.elevacaoCameraInicial">
+            <summary>
+            Ângulo inicial em graus do giro vertical da câmera
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Camera.UpdatePosicao">
+            <summary>
+            Atualiza a posição da câmera
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Camera.ResetaPosicao">
+            <summary>
+            Restaura a câmera para sua posição inicial
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Camera.MatrizView">
+            <summary>
+            Matriz de posicionamento da câmera
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BracoRobo.Classes.Plano">
+            <summary>
+            Classe para representar um plano a ser desenhado na simulação do braço robô
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Plano.modelo">
+            <summary>
+            Modelo 3D de uma parte do plano. O plano completo será formado por várias partes definidas por este modelo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Plano.visivel">
+            <summary>
+            Campo para definir se o plano está visível.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Plano.#ctor">
+            <summary>
+            Construtor do plano
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.Base">
+            <summary>
+            Representa uma base do braço robô. Ser fixa ou móvel irá depender do uso das propriedades da classe ComponenteFisico e do referencial.
+            <seealso cref="T:BracoRobo.Classes.ComponenteFisico"/>
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Base.#ctor">
+            <summary>
+            Construtor padrão.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Base.MomentoInercia">
+            <summary>
+            Momento de inércia da base (não implementado)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BracoRobo.Classes.PlacaMiniMaestro24">
+            <summary>
+            Classe para representar a placa Mini Maestro 24 da Pololu
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.PlacaMiniMaestro24.timer">
+            <summary>
+            Atributo que serve para contagem de tempo e para ativar o evento de alteração dos canais
+            da placa mini maestro.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.PlacaMiniMaestro24.conta80ms">
+            <summary>
+            Atributo que conta 80 milissegundos, ou seja, conta 8 vezes os estouros do timer.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.PlacaMiniMaestro24.canais">
+            <summary>
+            Vetor que contém as informações referentes aos canais da placa mini maestro
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.PlacaMiniMaestro24.movingState">
+            <summary>
+            Variável que contém o estado de movimento dos canais. Se pelo menos 1 estiver mudando o position,
+            movingState vale 0x01; caso contrário, 0x00.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.#ctor">
+            <summary>
+            Construtor padrão
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.timer_Elapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Rotina de evento do timer que será acionada sempre que o timer estourar
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.SetTarget(System.Byte,System.Single)">
+            <summary>
+            Seta o Target do canal, ativando o timer
+            </summary>
+            <param name="canal">canal do Target a ser setado</param>
+            <param name="target4">valor do Target a ser setado</param>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.SetarTarget(System.Byte,System.Single)">
+            <summary>
+            Seta o Target do canal, sem ativar o timer.
+            </summary>
+            <param name="canal">canal do Target a ser setado</param>
+            <param name="target4">valor do Target a ser setado</param>
+            <returns>true se o target setado for diferente da posição atual, ou false, caso contrário</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.SetMultipleTargets(System.Byte,System.Byte,System.Single[])">
+            <summary>
+            Seta os targets de vários canais, do primeiro canal especificado em primeiroCanal
+            até o último canal (primeiroCanal+numTargets)
+            </summary>
+            <param name="numTargets">Quantidade de targets (ou canais) a serem setados</param>
+            <param name="primeiroCanal">primeiro canal da sequência a ser setado</param>
+            <param name="targets">vetor contendo os targets a serem setados</param>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.SetSpeed(System.Byte,System.UInt16)">
+            <summary>
+            Seta a velocidade máxima (de variação do Target) do canal, em unidades de (0.25 μs)/(10 ms).
+            </summary>
+            <param name="canal">Canal a ter sua velocidade máxima alterada</param>
+            <param name="vel">Valor da velocidade a ser setada, em unidades de (0.25 μs)/(10 ms)</param>
+            <returns>true se a velocidade foi corretamente setada, false caso contrário.</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.SetAcceleration(System.Byte,System.UInt16)">
+            <summary>
+            Seta a aceleração do canal, em unidades de (0.25 μs)/(10 ms)/(80 ms)
+            </summary>
+            <param name="canal">Canal a ter sua aceleração alterada</param>
+            <param name="accel">Valor da aceleração a ser setada, em unidades de (0.25 μs)/(10 ms)/(80 ms)</param>
+            <returns>true se a velocidade foi corretamente setada, false caso contrário.</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.GetPosition(System.Byte)">
+            <summary>
+            Obtém da placa Mini Maestro a posição corrente do canal, em unidades de 0.25us.
+            </summary>
+            <param name="canal">Canal do qual se quer saber a posição</param>
+            <returns>A posição em unidades de 0.25us</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.GetMovingState">
+            <summary>
+            Obtém da placa Mini Maestro o estado de movimento dos canais. Enquanto houver pelo menos 1 canal tendo
+            sua posição alterada, esta função irá avisar que há movimento.
+            </summary>
+            <returns>0x01 (um), se pelo menos 1 canal estiver alterando posição, ou 0x00 (zero), caso contrário</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.PlacaMiniMaestro24.GetErrors">
+            <summary>
+            Obtém os flags de erro da placa Mini Maestro.
+            </summary>
+            <returns>Retorna 0x0000. Futuramente será feita simulação destes erros</returns>
+        </member>
+        <member name="T:BracoRobo.Classes.ComandoLEDRecebidoEventHandler">
+            <summary>
+            Delegate para conectar notificações de evento de recebimento do comando LED
+            </summary>
+            <param name="sender">Objeto que enviou a notificação</param>
+            <param name="e">argumentos do evento</param>
+        </member>
+        <member name="T:BracoRobo.Classes.ComandoAcionamentoServoRecebidoEventHandler">
+            <summary>
+            Delegate para conectar notificações de evento de recebimento de quaisquer comandos 
+            de acionamento de servos (JST, RPS, CTZ, GA ou GF)
+            </summary>
+            <param name="sender">Objeto que enviou a notificação</param>
+            <param name="e">argumentos do evento</param>
+        </member>
+        <member name="T:BracoRobo.Classes.ComandoProto">
+            <summary>
+            Enumaração para o flag para os comandos que foram acionados. Utilizado para rotinas que requeiram execução em tempo real,
+            tal como o acionamento dos servomotores
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdNone">
+            <summary>
+            nenhum comando
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdLED">
+            <summary>
+            Comando LED
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdGA">
+            <summary>
+            comando GA (Garra Abrir)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdGF">
+            <summary>
+            comando GF (Garra Fechar)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdCTZ">
+            <summary>
+            Comando CTZ (CenTraliZar)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdJST">
+            <summary>
+            Comando JST (Junta Setar Target)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdTMX">
+            <summary>
+            Comando TMX (Target MáXimo)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdTMN">
+            <summary>
+            Comando TMN (Target MíNimo)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdT90">
+            <summary>
+            Comando T90 (Target a 90 graus, para o comando CTZ) 
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdTRP">
+            <summary>
+            Comando TRP (Target RePouso, para o comando RPS)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdVEL">
+            <summary>
+            Comando VEL (VELocidade)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdACL">
+            <summary>
+            Comando ACL (ACeLeração)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdFRS">
+            <summary>
+            Comando FRS (Feedback de Rastreamento dos Servos)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdCSB">
+            <summary>
+            Comando CSB (Comandos de Servos Bloqueantes)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdEMM">
+            <summary>
+            Comando EMM (Erro da Mini Maestro)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdGTP">
+            <summary>
+            Comando GTP (GeT Position da Mini Maestro)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdGMS">
+            <summary>
+            Comando GMS (Get Moving State da Mini Maestro)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdSTT">
+            <summary>
+            Comando STT (STaTus)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdRST">
+            <summary>
+            Comando RST (ReSeT)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdIN1">
+            <summary>
+            Sinal IN1 (INicialização de posição 1)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdIN2">
+            <summary>
+            Sinal IN2 (INicialização de posição 2)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdECH">
+            <summary>
+            Comando ECH (ECo Habilitado)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdRPS">
+            <summary>
+            Comando RPS (RePouSo)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdDSL">
+            <summary>
+            Comando DSL (DeSLiga)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.ComandoProto.cmdPRT">
+            <summary>
+            Comando PRT (PaRada Total)
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.TipoMultiplicidadeServos">
+            <summary>
+            Enumeração para o flag para indicar se o comando de acionamento dos servos acionados aciona 0, 1 ou mais servos
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.TipoMultiplicidadeServos.mtpNenhumServo">
+            <summary>
+            Nenhum servo acionado
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.TipoMultiplicidadeServos.mtpApenasUmServo">
+            <summary>
+            Apenas um servo acionado
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.TipoMultiplicidadeServos.mtpVariosServos">
+            <summary>
+            2 ou mais servos acionados
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.TipoFeedbackServos">
+            <summary>
+            Enumeração para o flag para indicar que tipo de feedback os comandos de acionamento dos servos irão
+            enviar para a porta serial
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.TipoFeedbackServos.fdbSemFeedback">
+            <summary>
+            Sem feedback
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.TipoFeedbackServos.fdbTemposDosServos">
+            <summary>
+            Tempos (targets) de posição corrente dos servos
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.TipoFeedbackServos.fdbSinalDeMovimento">
+            <summary>
+            Sinal indicativo de movimento
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.Robo">
+            <summary>
+            Classe para representar um robô em sua totalidade.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.DELAY_MS_RESPOSTA">
+            <summary>
+            Constante para indicar o delay entre o acionamento de um comando de acionamento dos servos e
+            o início do feedback.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.OnComandoLEDRecebido(System.EventArgs)">
+            <summary>
+            Invoca o evento ComandoLEDRecebido. Chamado sempre que for recebido um comando LED com parâmetros
+            </summary>
+            <param name="e">parâmetros do evento</param>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.OnComandoAcionamentoServoRecebido(System.EventArgs)">
+            <summary>
+            Invoca o evento ComandoAcionamentoServoRecebido. Chamado sempre que for recebido quaisquer comandos 
+            de acionamento de servos (JST, RPS, CTZ, GA ou GF)
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.baseFixa">
+            <summary>
+            Base do robô
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.motorBase">
+            <summary>
+            Motor entre a base do robô e a base giratória
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.baseGiratoria">
+            <summary>
+            Base giratória
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.motor1">
+            <summary>
+            Motor entre a base giratória e o segmento de braço 1
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.bracoL1">
+            <summary>
+            Segmento de braço 1
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.motor2">
+            <summary>
+            Motor entre os segmentos de braço 1 e 2
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.bracoL2">
+            <summary>
+            Segmento de braço 2
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.motor3">
+            <summary>
+            Motor entre os segmentos de braço 2 e 3
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.bracoL3">
+            <summary>
+            Segmento de braço 3
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.motorGiroGarra">
+            <summary>
+            Motor entre o segmento de braço 3 e a garra. É o motor que irá girar a garra.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.garra">
+            <summary>
+            Garra do robô
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.bufferLeds">
+            <summary>
+            Buffer contendo o estado dos leds
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.placaMiniMaestro24">
+            <summary>
+            Objeto que representa a placa Mini Maestro 24 que controla os servos do braço robô
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.serialCom">
+            <summary>
+            Objeto para a porta serial que irá receber os comandos do robô, bem como mandar para o controle
+            quaisquer dados referentes ao robô que se fizerem necessários, tais como dados dos sensores, por exemplo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.bufferProto">
+            <summary>
+            String que possui os comandos aplicados ao robô via porta serial. Esta string irá obter o valor do campo
+            bfRecebe, quando este tiver recebido todos os caracteres que compõem os comandos do robô.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.bfRecebe">
+            <summary>
+            String para receber caracteres via porta serial. O acesso a esta string só deve ocorrer quando todos os caracteres
+            forem recebidos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.recChars">
+            <summary>
+            Variável contendo os caracteres recém recebidos da porta serial
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.flagProtocolo">
+            <summary>
+            Variável que indica quando os caracteres de um comando estão sendo recebidos, ou seja,
+            quando um abre-colchete ([) foi recebido. Valor false indica que nenhum [ foi recebido.
+            Esta variável vai a false, também, quando um fecha-colchete (]) é recebido.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.DataReady">
+            <summary>
+            Indica se bufferProto já recebeu um pacote completo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.estadoPosicaoRepouso">
+            <summary>
+            Variável de estado para guiar a execução do método PosicaoRepouso() enquanto os gráficos são atualizados
+            Por padrão, 0 é o estado inicial, 1 é o estado final, e os demais serão os intermediários.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.feedbackRastrServos">
+            <summary>
+            Variável para indicar se os comandos JST, RPS, CTZ, GA e GF irão ou não mandar para a
+            porta serial as posições que os servos envolvidos assumem durante os movimentos dos mesmos.
+            Valor zero indica que os comandos não irão enviar feedback durante o movimento dos
+            servos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.comando">
+            <summary>
+            Comando reconhecido pelo protocolo do robô
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.ultCmdMovServos">
+            <summary>
+            Último comando acionado que move os servos
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.strUltCmdMovServos">
+            <summary>
+            String referente ao último comando de acionamento dos servos executado
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.tipoCmdMovServosPorQt">
+            <summary>
+            Determina se será zero, um ou vários servos a serem acionados
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.canalCmd1ServoNaoBloq">
+            <summary>
+            Indica qual canal do servo será ativado (0 a 5).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.paradaTotalSolicitada">
+            <summary>
+            Flag para indicar se uma parada total foi solicitada via comando PRT.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.comandosServosBloqueantes">
+            <summary>
+            Variável para indicar se os comandos dos servos irão ou não impedir que novos comandos
+            sejam recebidos enquanto os servos estiverem se movendo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.ecoCaracteresAtivado">
+            <summary>
+            Variável para indicar se os caracteres recebidos pela UART serão enviados de volta.
+            Ativado por padrão para permitir melhor interação com uso de programas de terminal
+            de porta serial, tal como o Tera Term.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.indexServo">
+            <summary>
+            Variável para ser usada como índice do servo a ser configurado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.servos">
+            <summary>
+            Vetor contendo os endereços dos servos
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.servosTemp">
+            <summary>
+            Vetor contendo os valores temporários dos servos
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.resposta">
+            <summary>
+            Variável utilizada para guardar a resposta a um comando
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.frsTemp">
+            <summary>
+            Atributo para guardar provisoriamente a configuração do feedback dos servos
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.vetorTargets">
+            <summary>
+            Vetor que guarda os targets para uso no comando SetMultipleTargets() da placa mini maestro 24
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.timer">
+            <summary>
+            Atributo que serve para contagem de tempo
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.ultimoCharRecebido">
+            <summary>
+            Último caractere recebido pela porta serial. Armazena apenas caracteres alfanuméricos, abre colchete ([) ou
+            fecha colchete (])
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Robo.CANAL_INDEFINIDO">
+            <summary>
+            Define um canal indefinido da mini maestro.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.#ctor">
+            <summary>
+            Construtor do robô. Aqui serão inicializados todos os componentes físicos do robô.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.Finalize">
+            <summary>
+            Destrutor da classe Robo
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.LoadContent">
+            <summary>
+            Sobrecarca da função LoadContent para a classe Robo
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.serialCom_DataReceived(System.Object,System.IO.Ports.SerialDataReceivedEventArgs)">
+            <summary>
+            Rotina para capturar o que for recebido da porta serial
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.GetCharBfRecebe">
+            <summary>
+            Obtém um caractere de bfRecebe e retira o mesmo do início. Pode-se dizer que o caractere
+            obtido é consumido de bfRecebe.
+            </summary>
+            <returns>O caractere contido no início de bfRecebe, se este não estiver vazio. Caso contrário, retorna vazio</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RecebeCaracteresDoProtocolo">
+            <summary>
+            Função utilizada pela rotina de interrupção para receber os caracteres enviados pela porta serial e armazená-los
+            em buffer caso sejam enviados entre os caracteres limites da mensagem do protocolo ([ e ]).
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Atualiza os eventos do braço robô. Funciona como a função main() em C do braço robô verdadeiro.
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.Comando(System.String)">
+            <summary>
+            Função para reconhecer um comando recebido pela porta serial. Esta função reconhece apenas o nome do comando
+            mas não o formato dos seus parâmetros.
+            </summary>
+            <param name="comando">comando String contendo o nome do comando que será reconhecido (JST, LED etc).</param>
+            <returns>true Se o comando for reconhecido, false caso contrário.</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RespostaComando(System.String)">
+            <summary>
+            Função que envia para a porta serial uma resposta do comando. Normalmente uma resposta de que
+            o comando foi reconhecido, ou uma resposta contendo valores.
+            </summary>
+            <param name="resposta">string contendo a resposta do comando</param>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RespostaComandoNAK(System.String)">
+            <summary>
+            Envia para a porta serial a resposta de que o formato do comando não foi reconhecido.
+            Em outras palavras, a resposta que esta função envia significa que o nome do comando
+            foi reconhecido, mas os seus parâmetros (e/ou o formato dos mesmos) não foram reconhecidos.
+            </summary>
+            <param name="comando">String contendo o comando que dará a resposta NAK</param>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RespostaComandoERR(System.String)">
+            <summary>
+            Envia para a UART a resposta de que houve um erro de conexão entre a Ready For PIC e a placa
+            de controle dos servos. Em outras palavras, a resposta que esta função envia significa que
+            o comando e seus parâmetros foram reconhecidos, mas o dispositivo que o comando aciona
+            não respondeu adequadamente. Esta função só deve ser chamada para comandos que controlem algum
+            dispositivo, tais como os comandos JST, GA, GF e CTZ, que controlam a placa de controle dos
+            servos.
+            </summary>
+            <param name="comando">String contendo o comando que dará a resposta ERR</param>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RespostaJNT_NAK">
+            <summary>
+             Função para enviar uma resposta que indica que a junta especificada em um comando que trate juntas não
+             foi reconhecida.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.CommitTempos">
+            <summary>
+            Função para guardar (commitar) os valores dos tempos dos servos antes de serem alterados.
+            Usada como confirmação de que os valores foram setados corretamente na placa de controle
+            dos servos. Estes valores podem ser recuperados pela função RollbackTempos().
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RollbackTempos">
+            <summary>
+            Função para recuperar os tempos anteriores dos servos em caso de erro.
+            Os valores recuperados são os mesmos gravados pela função CommitTempos().
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.CommitVelocidades">
+            <summary>
+            Função para guardar (commitar) os valores das velocidades dos servos antes de serem alteradas.
+            Usada como confirmação de que os valores foram setados corretamente na placa de controle
+            dos servos. Estes valores podem ser recuperados pela função RollbackVelocidades().
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RollbackVelocidades">
+            <summary>
+            Função para recuperar as velocidades anteriores dos servos em caso de erro.
+            Os valores recuperados são os mesmos gravados pela função CommitVelocidades().
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.CommitAceleracoes">
+            <summary>
+            Função para guardar (commitar) os valores das acelerações dos servos antes de serem alteradas.
+            Usada como confirmação de que os valores foram setados corretamente na placa de controle
+            dos servos. Estes valores podem ser recuperados pela função RollbackAceleracoes().
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RollbackAceleracoes">
+            <summary>
+            Função para recuperar as velocidades anteriores dos servos em caso de erro.
+            Os valores recuperados são os mesmos gravados pela função CommitAceleracoes().
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.EnviaStatusServo(BracoRobo.Classes.Servomotor)">
+            <summary>
+            Envia para a UART string descrevendo o status de um servo, tais como tempo de pulso corrente, 
+            tempo máximo, tempo mínimo etc.
+            </summary>
+            <param name="srv">servo cujos dados serão exibidos</param>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.EnviaStatusLeds">
+            <summary>
+            Envia para a porta serial o status dos LEDS do braço robô
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.IniciarServos">
+            <summary>
+            Inicia o funcionamento e as configurações dos servos.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.PosicaoRepouso">
+            <summary>
+            Função para fazer o braço robô assumir a posição de repouso. Deve ser usada principalmente
+            na inicialização (ou reinicialização), para evitar movimentos bruscos dos servos.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.TempoPulsoInicial(System.Byte)">
+            <summary>
+            Tenta obter da placa Mini Maestro os targets correntes dos servos. Função utilizada
+            na inicialização dos servos.
+            </summary>
+            <param name="canal">Canal do servo na Mini Maestro</param>
+            <returns>O valor corrente do target do servo, se houve comunicação bem sucedida com a Mini Maestro.
+            Valor zero, se ocorreu algum erro na comunicação com a Mini Maestro, ou se a mesma estiver
+            desconectada.</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.ConfigParamServo(System.String)">
+            <summary>
+            Configura algum parâmetro de operação do servo (tempos máximo, mínimo ou central, velocidade, aceleracao etc), 
+            dependendo de qual comando chamar esta função.
+            Se o comando chamado não incluir o valor a ser setado como parâmetro, esta função trata, apenas, de exibir o valor setado.
+            A variável indexServo é setada neste comando caso sua execução seja bem sucedida.
+            </summary>
+            <param name="cmdQueSeta">Endereço da string contendo o comando que setou o valor (TMX, TMN, T90, VEL, ACL).</param>
+            <returns>true se o comando for corretamente executado, false caso contrário</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.VALSET(System.Single@)">
+            <summary>
+            Função que trata de setar um valor de configuração de um servo e/ou de obter
+            o valor dessa configuração e enviar para a UART 1 como resposta.
+            </summary>
+            <param name="valorASetar">referência para a variável a ser setada</param>
+            <returns> true caso o comando (e os parâmetros do mesmo) sejam reconhecidos, false caso contrário</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.JST(System.Int32,System.Int32)">
+            <summary>
+            Função que seta o tempo de pulso do servo na estrutura que guarda os tempos dos servos. Caso o comando JST não venha
+            com parâmetros, esta função apenas trata de montar a resposta do comando para que seja enviado pela UART os valores
+            dos tempos de pulso do servo. Caso o JST venha apenas com 1 junta como parâmetro (sem o tempo), este comando monta a resposta
+            do comando JST para enviar apenas o tempo de pulso corrente da junta especificada.
+            </summary>
+            <param name="ordemServo">valor inteiro (a partir de zero) que representa em que "ordem" o servo foi especificado no comando, para
+            que a função possa encontrar a posição correta no buffer em que se encontra o valor a ser setado.</param>
+            <param name="indiceServo">índice do servo no vetor de servos.</param>
+            <returns>true caso os parâmetros do comando sejam reconhecidos, false caso contrário</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.EnviarFeedback(System.String)">
+            <summary>
+            Envia para a porta serial o feedback de um comando
+            </summary>
+            <param name="feedback"></param>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.ResetaVariaveisDeFeedBack">
+            <summary>
+            Reseta as variáveis de controle de feedback dos comandos de acionamento
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.ParadaTotal">
+            <summary>
+            Método que realiza a parada total propriamente dita
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RetomarVelocidadesAposParadaTotal1Servo">
+            <summary>
+            Método para retomar as velocidades nos canais dos servos na Mini Maestro 24
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.RespEFeedbackMovServos">
+            <summary>
+            Função responsável por enviar as respostas dos comandos dos servos de forma não bloqueante.
+            Ou seja, quaisquer novos comandos podem ser recebidos durante o envio da resposta.
+            Esta função pode ser usada de forma bloqueante se ela for executada dentro de um loop que
+            teste se tipoCmdMovServosPorQt for diferente de mtpApenasUmServo.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.DecodificaProtocolo">
+            <summary>
+            Função responsável pela decodificação dos comandos, acionamento geral e configurações.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Robo.MomentoInercia">
+            <summary>
+            Método não implementado
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:BracoRobo.Classes.Robo.ComandoLEDRecebido">
+            <summary>
+            Evento que irá notificar o recebimento de um comando LED
+            </summary>
+        </member>
+        <member name="E:BracoRobo.Classes.Robo.ComandoAcionamentoServoRecebido">
+            <summary>
+            Evento que irá notificar o recebimento de quaisquer comandos de quaisquer comandos 
+            de acionamento de servos (JST, RPS, CTZ, GA ou GF)
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.DedoGarra">
+            <summary>
+            Classe para representar um dedo da garra MK2.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.DedoGarra.posDedoAberto">
+            <summary>
+            Posição do dedo ao estar completamente em posição de "aberto".
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.DedoGarra.posDedoFechado">
+            <summary>
+            Posição do dedo ao estar completamente em posição de "fechado".
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.DedoGarra.#ctor">
+            <summary>
+            Construtor padrão da classe DedoGarra
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.DedoGarra.MomentoInercia">
+            <summary>
+            Momento de inércia do dedo da garra (não implementado)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BracoRobo.Classes.ChangedEventHandler">
+            <summary>
+            Um tipo delegate para conectar notificações de mudanças de posição no eixo do servomotor.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:BracoRobo.Classes.Servomotor">
+            <summary>
+            Representa um servomotor. Um servomotor é um motor que rotaciona seu eixo para um determinado ângulo e procura mantê-lo, aplicando
+            torque quando houver algum torque contrário sendo aplicado no seu eixo.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Servomotor.OnChanged(System.EventArgs)">
+            <summary>
+            Invoca o evento ChangedAnguloCorrente. Chamado sempre que AnguloCorrente mudar de valor
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.voltagemMax">
+            <summary>
+            Máxima voltagem aceita pelo servomotor (em Volts). Pode ser obtido no datasheet do motor ou na loja onde o mesmo for comprado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.voltagemMin">
+            <summary>
+            Mínima voltagem aceita pelo servomotor (em Volts). Pode ser obtido no datasheet do motor ou na loja onde o mesmo for comprado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.velocidadeMax">
+            <summary>
+            Velocidade máxima do eixo de rotação do servomotor (em segundos/60º, sem carga) ao aplicar a voltagem contida em voltagemMin.
+            A unidade segundos/60º significa quantos segundos leva para o servomotor girar um ângulo de 60º. Pode ser obtido no datasheet do motor ou na loja onde o mesmo for comprado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.velocidadeMin">
+            <summary>
+            Velocidade mínima do eixo de rotação do servomotor (em segundos/60º, sem carga) ao aplicar a voltagem contida em voltagemMin
+            A unidade segundos/60º significa quantos segundos leva para o servomotor girar um ângulo de 60º. Pode ser obtido no datasheet do motor ou na loja onde o mesmo for comprado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.torqueMax">
+            <summary>
+            Torque máximo (em Kgf.cm) que o motor é capaz de aplicar sobre uma carga ao aplicar a voltagem contida em voltagemMax.
+            Pode ser obtido no datasheet do motor ou na loja onde o mesmo for comprado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.torqueMin">
+            <summary>
+            Torque mínimo (em Kgf.cm) que o motor é capaz de aplicar sobre uma carga ao aplicar a voltagem contida em voltagemMin.
+            Pode ser obtido no datasheet do motor ou na loja onde o mesmo for comprado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.anguloMax">
+            <summary>
+            Ângulo máximo que o eixo do servo assume. Pode ser obtido no datasheet do motor ou na loja onde o mesmo for comprado.
+            Também pode ser especificado ângulos menores que o ângulo máximo do servo para limitar mais a faixa de movimento.
+            Notar que este ângulo não necessariamente irá corresponder aos ângulos utilizados nas matrizes dos modelos 3D. Neste
+            caso, é necessária uma conversão de ângulos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.anguloMin">
+            <summary>
+            Ângulo mínimo que o servo assume. Pode ser obtido no datasheet do motor ou na loja onde o mesmo for comprado.
+            Também pode ser especificado valores maiores que o ângulo mínimo do servo para limitar mais a faixa de movimento.
+            Notar que este ângulo não necessariamente irá corresponder aos ângulos utilizados nas matrizes dos modelos 3D. Neste
+            caso, é necessária uma conversão de ângulos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.anguloAlvo">
+            <summary>
+            Ângulo alvo que se quer que o eixo do servo assuma.
+            Notar que este ângulo não necessariamente irá corresponder aos ângulo utilizado nas matrizes do modelo 3D. Neste
+            caso, é necessária uma conversão de ângulos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.anguloCorrente">
+            <summary>
+            Ângulo corrente que o eixo do servo assume.
+            Notar que este ângulo não necessariamente irá corresponder aos ângulos utilizado nas matrizes do modelo 3D. Neste
+            caso, é necessária uma conversão de ângulos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.coefAngular">
+            <summary>
+            Coeficiente para conversão linear de tempo de pulso para graus. Usado quando há conversão de tempo de pulso
+            para graus.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.offsetAngular">
+            <summary>
+            Valor de offset para conversão de tempo de pulso para graus. Usado quando há conversão de tempo de pulso 
+            para graus.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.sinalPropagacaoAnguloCorrente">
+            <summary>
+            Guarda o sinal (positivo ou negativo) utilizado na conversão de tempo de pulso (us) para ângulo em graus. Usar 1.0f para positivo ou -1.0f para negativo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.voltagemAplic">
+            <summary>
+            Voltagem aplicada sobre o motor (em Volts)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.periodoAtualizacaoPWM">
+            <summary>
+            Período de atualização (em microssegundos) do sinal PWM aplicado ao servomotor.
+            É o tempo máximo entre um pulso e outro de controle do servomotor.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.tempoPulsoCorrente">
+            <summary>
+            Duração (em microssegundos) do sinal do pulso corrente para o servomotor (atributo)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.tempoPulsoAlvo">
+            <summary>
+            Tempo (em microssegundos) do sinal do pulso alvo para o servomotor. Ao determinar uma nova posição para o eixo
+            do servo, este é o atributo a ser setado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.tempoPulsoMax">
+            <summary>
+            Duração (em microssegundos) do sinal de pulso para o servomotor girar para o ângulo máximo
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.tempoPulsoMin">
+            <summary>
+            Duração (em microssegundos) do sinal de pulso para o servomotor girar para o ângulo mínimo
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.tempoPulsoPosNeutra">
+            <summary>
+            Duração (em microssegundos) do sinal de pulso para o servomotor girar para o ângulo correspondente à posição central (neutra)
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.tempoPulsoRepouso">
+            <summary>
+            Tempo de pulso para o servo assumir a posição de repouso. Útil para o caso de religamento ou reinicialização da placa de controle dos servos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.velTmpPulso">
+            <summary>
+            Velocidade máxima de variação do tempo de pulso em (0,25us)/(10ms). Se zero, o servo trabalha na sua velocidade máxima.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.acelTmpPulso">
+            <summary>
+            Aceleração da variação do tempo de pulso em (0,25us)/(10ms)/(80ms). Se zero, o servo trabalha com a sua máxima aceleração.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.resolucao">
+            <summary>
+            Número que representa a quantidade de posições diferentes que o servomotor pode assumir
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.sigla">
+            <summary>
+            Sigla da junta correspondente ao servomotor
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.idJST">
+            <summary>
+            Caractere que corresponde à junta correspondente ao servo no comando JST
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.nome">
+            <summary>
+            Campo para o nome associado ao servo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.canalMM">
+            <summary>
+            Canal da placa Mini Maestro ao qual o servomotor é conectado.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.conversaoTempoParaAnguloAtiva">
+            <summary>
+            Flag para indicar se deve haver ou não conversão de tempo de pulso para ângulo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.proporcaoInversaTmpPulsoParaAngulo">
+            <summary>
+            Flag para indicar que a conversão de tempo de pulso para graus segue uma proporção inversa (true), ou
+            seja, se o tempo de pulso máximo corresponde ao angulo mínimo e o tempo de pulso mínimo corresponde
+            ao tempo de pulso máximo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.Servomotor.conversaoAnguloCorrParaAngGiroEixo">
+            <summary>
+            Flag para indicar se haverá (true) ou não (false) conversão do atributo AnguloCorrente para anguloGiroEixo
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Servomotor.#ctor">
+            <summary>
+            Construtor padrão
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.Servomotor.FaixaDeOperacao">
+            <summary>
+            Método para calcular a faixa de operação (em microssegundos) do pulso a ser aplicado no servomotor.
+            Ou seja, é a diferença entre o maior e o menor pulso a ser aplicado no servomotor.
+            </summary>
+            <returns>Valor, em microssegundos, da faixa de operação</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Servomotor.frequenciaPWM">
+            <summary>
+            Método para calcular a frequência PWM (em KHz) necessária para aplicar no servomotor
+            </summary>
+            <returns>Frequência PWM, em KHz, a ser aplicada no servomotor</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.Servomotor.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Método que atualiza a posição do servomotor. Será levado em consideração a velocidade
+            e a aceleração do eixo do servo.
+            </summary>
+        </member>
+        <member name="E:BracoRobo.Classes.Servomotor.ChangedAnguloCorrente">
+            <summary>
+            Evento que irá notificar qualquer mudança em anguloCorrente
+            </summary>
+        </member>
+        <member name="P:BracoRobo.Classes.Servomotor.AnguloCorrente">
+            <summary>
+            Ângulo corrente que o eixo do servo assume.
+            Notar que este ângulo não necessariamente irá corresponder aos ângulos utilizado nas matrizes do modelo 3D. Neste
+            caso, é necessária uma conversão de ângulos.
+            </summary>
+        </member>
+        <member name="P:BracoRobo.Classes.Servomotor.TempoPulsoCorrente">
+            <summary>
+            Duração (em microssegundos) do sinal do pulso corrente para o servomotor (Property)
+            </summary>
+        </member>
+        <member name="T:BracoRobo.Classes.GarraMK2">
+            <summary>
+            Classe para representar uma garra MK2
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.servoDaGarra">
+            <summary>
+            Motor para movimentar as engrenagens dos dedos da garra.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.baseGarra">
+            <summary>
+            Base da garra. Por ela ser o referencial da garra, ela será tratada, dentro da garra, como uma base fixa.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.eixoEngrenagemAmortecida">
+            <summary>
+            Peça da garra MK2 responsável por conectar o servo com os segmentos engrenados
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.segmentoComEngrenagemEsquerdo">
+            <summary>
+            Segmento engrenado que se conecta ao dedo esquerdo e ao segmento engrenado direito
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.segmentoComEngrenagemDireito">
+            <summary>
+            Segmento engrenado que se conecta ao dedo direito e ao segmento engrenado esquerdo
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.segmentoArticuladoEsquerdo">
+            <summary>
+            Segmento que conecta o corpo da base da garra ao dedo esquerdo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.segmentoArticuladoDireito">
+            <summary>
+            Segmento que conecta o corpo da base da garra ao dedo direito.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.dedoEsquerdo">
+            <summary>
+            Dedo esquerdo da garra.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.dedoDireito">
+            <summary>
+            Dedo direito da garra.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.Classes.GarraMK2.objeto">
+            <summary>
+            Objeto que a garra está segurando. Se for null, significa que a garra não está segurando nada.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.#ctor">
+            <summary>
+            Construtor padrão. Inicia os componentes da garra com valores padrões.
+            
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.MomentoInercia">
+            <summary>
+            Método não implementado
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.AgarraObjeto(BracoRobo.Classes.ComponenteFisico)">
+            <summary>
+            Atribui à propriedade "objeto" da garra um componente físico. Significa que, após a garra agarrar o objeto,
+            quaisquer movimentos que a garra fizer (rotação e/ou translação), o objeto irá fazer igual.
+            </summary>
+            <param name="obj">Representa o objeto que será agarrado.</param>
+            <returns>Retorna true, se agarrou o objeto. Retorna false, caso contrário.</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.SoltaObjeto">
+            <summary>
+            Atribui null à propriedade "objeto" da garra, significando que a garra soltou o objeto que ela estava agarrando,
+            qualquer que seja.
+            </summary>
+            <returns>Retorna true, se o objeto foi solto. Retorna false, caso contrário.</returns>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.Abre">
+            <summary>
+            Abre a garra. A cada execução deste método, os dedos da garra deverão se deslocar uma distância dependente da velocidade 
+            de rotação do eixo do motor.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.Fecha">
+            <summary>
+            Fecha a garra. A cada execução deste método, os dedos da garra deverão se deslocar uma distância dependente 
+            da velocidade de rotação do motor.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.Girar">
+            <summary>
+            Gira a garra. Se a garra estiver segurando um objeto, o mesmo gira junto com a garra.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.GirarInvertido">
+            <summary>
+            Gira a garra em sentido contrário ao método Girar(). Se a garra estiver segurando um objeto, o mesmo gira junto com a garra.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.servoDaGarra_ChangedAnguloCorrente(System.Object,System.EventArgs)">
+            <summary>
+            Função a ser chamada sempre que houver alguma mudança em AnguloCorrente
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.AtualizarEngrenagensEDedos">
+            <summary>
+            Atualiza as posições de todas as peças da garra (engrenagens e dedos)
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Classes.GarraMK2.Matrizes(Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Função para gerar as matrizesGarra dos componentes envolvidos na garra.
+            </summary>
+            <param name="mt">Matriz do componente físico ao qual a garra está acoplada</param>
+            <returns>Um vetor de matrizesGarra para os componentes físicos da garra.</returns>
+        </member>
+        <member name="T:BracoRobo.SimulacaoDoRobo">
+            <summary>
+            Classe para simular o robô e o mundo onde ele está.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.bfRecebe">
+            <summary>
+            String para receber caracteres via porta serial. O acesso a esta string só deve ocorrer quando todos os caracteres
+            forem recebidos.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.serialCom">
+            <summary>
+            Objeto para a porta serial que irá receber os comandos do robô, bem como mandar para o controle
+            quaisquer dados referentes ao robô que se fizerem necessários, tais como dados dos sensores, por exemplo.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.comandoSerial">
+            <summary>
+            String que possui os comandos aplicados ao robô via porta serial. Esta string irá obter o valor do campo
+            bfRecebe, quando este tiver recebido todos os caracteres que compõem os comandos do robô.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.graphics">
+            <summary>
+            Trata da configuração e do gerenciamento do dispositivo gráfico da simulação.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.spriteBatch">
+            <summary>
+            Variável a ser utilizada para o uso de texturas.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.cameraBracoRobo">
+            <summary>
+            Câmera que aponta para o braço robô
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.cameraEasyled">
+            <summary>
+            Câmera que aponta para a placa Easyled
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.cameraCorrente">
+            <summary>
+            Variável que aponta para a câmera que está sendo usada no momento
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.world">
+            <summary>
+            Matriz que representa o mundo 3D. Basicamente, esta matriz, aplicada ao nosso objeto 3D, nos diz onde o objeto se localiza no
+            referencial do mundo 3D.
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.view">
+            <summary>
+            Matriz que representa a câmera. Nela estão definidas a posição da câmera, o ponto para onde está olhando e a orientação
+            (em pé, de cabeça pra baixo, deitada etc.).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.projection">
+            <summary>
+            Matriz de Projeção. Define como o mundo 3D aparece na janela (ou na tela, se estiver em tela cheia).
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.habilitaParte">
+            <summary>
+            Vetor para indicar quais partes do braço robô estão habilitadas para visualização
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.posHabParte">
+            <summary>
+            Variável para indexar o vetor habilitaParte
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.mudancaAutoDeCameraAtivada">
+            <summary>
+            Variável para indicar se a mudança automática de câmera está ou não ativada
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.keyboardState">
+            <summary>
+            Estado corrente do teclado
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.keyboardStateAnt">
+            <summary>
+            Estado anterior do teclado
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.robo">
+            <summary>
+            Instância do robô
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.referencialBaseFixa">
+            <summary>
+            Referencial cartesiano da base fixa
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.referencialPontoGarra">
+            <summary>
+            Referencial cartesiano do ponto da garra
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.planoBracoRobo">
+            <summary>
+            Plano do braço robô
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.planoGarra">
+            <summary>
+            Plano que passa pelo ponto da garra
+            </summary>
+        </member>
+        <member name="F:BracoRobo.SimulacaoDoRobo.planoOrigemBaseFixaGarra">
+            <summary>
+            Plano que passa pela origem do referencial da base fixa e pelo ponto da garra
+            </summary>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.#ctor">
+            <summary>
+            Construtor padrão da simulação.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.Finalize">
+            <summary>
+            Destrutor da simulação.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.Initialize">
+            <summary>
+            Permite a simulação (jogo) fazer qualquer inicialização que precisar antes de 
+            começar a rodar. É aqui que a simulação pode requisitar quaisquer serviços e
+            e carregar qualquer conteúdo (content) não gráfico relacionado. Chamando
+            base.Initialize() vai enumerar quaisquer componentes e inicializá-los também.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.LoadContent">
+            <summary>
+            LoadContent será chamado uma vez por simulação (jogo) e é o lugar
+            para carregar todo o seu conteúdo
+            </summary>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.UnloadContent">
+            <summary>
+            UnloadContent será chamado uma vez por simulação (jogo) e é o lugar
+            para desalocar (descarregar) todo o conteúdo.
+            </summary>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.robo_ComandoLEDRecebido(System.Object,System.EventArgs)">
+            <summary>
+            Método executado ao ocorrer o evento de recebimento do comando LED pela classe braço robô
+            </summary>
+            <param name="sender">objeto que disparou o evento</param>
+            <param name="e">argumentos do evento</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.robo_ComandoAcionamentoServoRecebido(System.Object,System.EventArgs)">
+            <summary>
+            Método executado ao ocorrer o evento de recebimento de qualquer comando de acionamento
+            dos servos (JST, RPS, CTZ, GA, GF)
+            </summary>
+            <param name="sender">objeto que disparou o evento</param>
+            <param name="e">argumentos do evento</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.UpdateKeyboard">
+            <summary>
+            Executa os comandos do teclado
+            </summary>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.UpdateView">
+            <summary>
+            Atualiza posicionamento da câmera corrente
+            </summary>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Permite a simulação (jogo) rodar lógica tal como atualizar o mundo (cenário),
+            checar colisões, obtendo entradas e tocando audio.        
+            </summary>
+            <param name="gameTime">Provê um retrato dos valores de tempo.</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Este método é chamado quando a simulação (jogo) deve se desenhar
+            </summary>
+            <param name="gameTime">Provê um retrato dos valores de tempo.</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.DrawMesh(Microsoft.Xna.Framework.Graphics.ModelMesh,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix,System.Single)">
+            <summary>
+            Desenha um único mesh de um modelo 3D
+            </summary>
+            <param name="mesh">mesh a ser desenhado</param>
+            <param name="world">matriz do referencial do objeto</param>
+            <param name="view">matriz da câmera</param>
+            <param name="projection">matriz da projeção</param>
+            <param name="alpha">ajusta a transparência entre 0 (totalmente transparente) e 1 (totalmente opaco (default))</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.DrawModelMonoMesh(Microsoft.Xna.Framework.Graphics.Model,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Desenha os modelos 3D do robô que possuam apenas um mesh ou que possua vários meshs, mas que a posição de
+            todos eles sejam determinados pela mesma matriz.
+            </summary>
+            <param name="model">modelo 3D a ser desenhado</param>
+            <param name="world">matriz do referencial do objeto</param>
+            <param name="view">matriz da câmera</param>
+            <param name="projection">matriz da projeção</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.DrawModelMultiMesh(Microsoft.Xna.Framework.Graphics.Model,Microsoft.Xna.Framework.Matrix,System.Collections.Generic.List{Microsoft.Xna.Framework.Matrix},Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Desenha os modelos 3D do robô que possuam vários meshs.
+            </summary>
+            <param name="model">modelo 3D a ser desenhado</param>
+            <param name="objectWorldMatrix">matriz do referencial do objeto</param>
+            <param name="meshWorldMatrices">Lista de matrizesGarra das partes do modelo</param>
+            <param name="view">matriz da câmera</param>
+            <param name="projection">matriz da projeção</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.DrawBaseFixaComLEDS(System.Boolean[],Microsoft.Xna.Framework.Graphics.Model,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Desenha a base fixa com a placa Ready for PIC e a placa Easyled
+            </summary>
+            <param name="ledAceso">Vetor que contém os estados de cada led da placa Easyled</param>
+            <param name="model">modelo 3D a ser desenhado</param>
+            <param name="world">matriz do referencial do objeto</param>
+            <param name="view">matriz da câmera</param>
+            <param name="projection">matriz da projeção</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.DrawReferencialCartesiano(BracoRobo.Classes.ReferencialCartesiano,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Desenha um referencial cartesiano
+            </summary>
+            <param name="referencial">Objeto que representa o referencial cartesiano</param>
+            <param name="world">matriz do referencial do objeto</param>
+            <param name="view">matriz da câmera</param>
+            <param name="projection">matriz da projeção</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.DrawPlano(BracoRobo.Classes.Plano,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix,Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Desenha um plano
+            </summary>
+            <param name="plano">plano a ser desenhado</param>
+            <param name="world">matriz do referencial do objeto</param>
+            <param name="view">matriz da câmera</param>
+            <param name="projection">matriz da projeção</param>
+        </member>
+        <member name="M:BracoRobo.SimulacaoDoRobo.AjudaDaSimulacao">
+            <summary>
+            Ajuda dos comandos de teclado da simulação
+            </summary>
+        </member>
+        <member name="M:BracoRobo.Program.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>
