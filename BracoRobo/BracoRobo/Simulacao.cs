@@ -1179,7 +1179,7 @@ namespace BracoRobo
                     beta = Math.Round(beta, 1);
                     gama = Math.Round(gama, 1);
 
-                    Console.WriteLine("Posição desejada da garra (ponta do vetor Zt):");
+                    Console.WriteLine("Posição desejada da garra:");
                     Console.WriteLine("X = {0} cm", posAlvoDesejada.X);
                     Console.WriteLine("Y = {0} cm", posAlvoDesejada.Y);
                     Console.WriteLine("Z = {0} cm", posAlvoDesejada.Z);
