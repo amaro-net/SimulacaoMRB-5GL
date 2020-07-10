@@ -542,7 +542,7 @@ namespace BracoRobo.Classes
                         }
 
                     }
-                    Console.WriteLine("Qual porta a simulação deve usar? (digite um número de 1 a " + i.ToString() + ", ou 0 para não utilizar nenhuma porta serial)");
+                    Console.WriteLine("Qual porta a simulação deve usar? (digite um número de 1 a " + nomesPortasSeriais.Length.ToString() + ", ou 0 para não utilizar nenhuma porta serial)");
                     String opt = Console.ReadLine();
                     int opcao = 0;
 
