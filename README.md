@@ -11,8 +11,8 @@ XNAGS40_setup.exe: Instalador para o XNA Game Studio 4.0, para compilar e rodar 
 Estes fontes ainda não foram testados com versões mais recentes do Visual Studio, de forma 
 que não é garantido que estes fontes funcionem nas mesmas.
 
-Canal Amaro Robótica na COS.TV:
+Canal Amaro Robótica na COS.TV:                                      
 https://cos.tv/channel/18349567838955520
 
-Playlist da simulação do MRB-5GL no Youtube:
+Playlist da simulação do MRB-5GL no Youtube:                         
 [![Simulação do MRB-5GL](https://img.youtube.com/vi/pcxN1zC21x8/0.jpg)](https://www.youtube.com/playlist?list=PLfnxnoUSxXdeVV4HWtph0ojQFo5DsJjf1)
