@@ -14,5 +14,8 @@ que não é garantido que estes fontes funcionem nas mesmas.
 Canal Amaro Robótica na COS.TV:                                      
 https://cos.tv/channel/18349567838955520
 
+Canal Amaro Robótica no Youtube:                         
+https://www.youtube.com/channel/UCy_uo2bDvMitD5um8x-WbZg
+
 Playlist da simulação do MRB-5GL no Youtube:                         
 [![Simulação do MRB-5GL](https://img.youtube.com/vi/pcxN1zC21x8/0.jpg)](https://www.youtube.com/playlist?list=PLfnxnoUSxXdeVV4HWtph0ojQFo5DsJjf1)
