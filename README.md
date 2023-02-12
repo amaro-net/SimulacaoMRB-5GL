@@ -18,5 +18,4 @@ Canal Amaro Robótica na Odysee:
 https://odysee.com/@AmaroRobotica:a
 
 Playlist da simulação do MRB-5GL na Odysee:                         
-
 [<img src="https://thumbs.odycdn.com/35a75efc1ef048d17f275c56e3ceb52a.webp" width="362" height="203">](https://odysee.com/@AmaroRobotica:a/Simula%C3%A7%C3%A3o-do-bra%C3%A7o-rob%C3%B4-MRB-5GL:f)
